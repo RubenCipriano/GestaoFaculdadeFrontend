@@ -1,0 +1,20 @@
+<div class="overlay" (click)="dialogService.closeDialog()"></div>
+
+<div class="dialog">
+  <header>Actions</header>
+  <div class="container">
+    <div class="form-input" *ngIf="formInputs">
+      <form [method]="method" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <div class="input-form" *ngFor="let input of formInputs">
+          <label>{{ input.name }}</label>
+          <input *ngIf="input.type != 'dropdown'" class="input" [type]="input.type" [name]="input" [formControlName]="input.name" [value]="input?.value">
+          <select *ngIf="input?.type == 'dropdown'" [formControlName]="input.name">
+            <option *ngFor="let value of input?.value" [value]="value.id">{{ value?.nome }}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="button-submit">Submit Form</button>
+      </form>
+    </div>
+  </div>
+</div>

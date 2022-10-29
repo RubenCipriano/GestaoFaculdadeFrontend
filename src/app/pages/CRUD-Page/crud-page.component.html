@@ -1,0 +1,41 @@
+<div class="crud-page">
+  <nav class="navbar-fixed-bottom">
+    <ul>
+      <img [src]="crud.image" *ngFor="let crud of crudChoises"
+            [style.background-color]="crud.activated ? crud.background : '#f6f6f6' "
+            (mouseover)="changeBackgroundColor(crud.background, $event)"
+            (mouseout)="changeBackgroundColor('#f6f6f6', $event, crud.activated)" [routerLink]="'/' + crud.path">
+    </ul>
+  </nav>
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <h4 *ngIf="headerTable.length == 0" style="text-align: center;">Não existe informação relativo a este modulo</h4>
+    <table class="crud-table">
+      <tr>
+        <th *ngFor="let headerName of headerTable">{{ headerName }}</th>
+        <th style="text-align: center;">Actions</th>
+      </tr>
+      <tr *ngFor="let value of tableValues">
+        <td *ngFor="let headerName of headerTable">
+          <span *ngIf="isObject(value[headerName])&& !value[headerName]?.nome">{{value[headerName]?.length}}</span>
+          <span *ngIf="isObject(value[headerName]) && value[headerName]?.nome">{{value[headerName]?.nome}}</span>
+          <span *ngIf="!isObject(value[headerName])">{{value[headerName]}}</span>
+        </td>
+        <td class="row">
+          <button (click)="edit(value)">Edit</button>
+          <button (click)="remove(value)">Remove</button>
+
+          <dialog-component
+            [editedObjectId]="value.id"
+            [method]="edittingValue ? 'PUT' : 'POST'"
+            [formInputs]="formInputs"
+            *ngIf="dialogService.showDialog"
+            (eventEmitter)="addTable($event)"></dialog-component>
+        </td>
+      </tr>
+    </table>
+
+    <button (click)="create()">Create</button>
+  </div>
+</div>
+

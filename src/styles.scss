@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.navbar-fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  background-color: #f6f6f6;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 20px 20px 0 0;
+  box-shadow: inset 0px 0px 55px -35px rgba(0,0,0,0.75);
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    padding-top: 10px;
+
+    img {
+      width: 100px;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px 10px 0;
+      border: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+  }
+}

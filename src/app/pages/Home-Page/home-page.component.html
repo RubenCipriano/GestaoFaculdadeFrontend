@@ -1,0 +1,8 @@
+<div class="home-page" [style.background-color]="backgroundColor">
+  <h1 class="title" [hidden]="!crudChoise">{{ crudChoise }}</h1>
+  <div class="main-menu-seclector">
+    <div class="card-component" *ngFor="let crud of crudChoises">
+      <card-component (mouseover)="changeBackgroundColor(crud.background, $event, crud)" [centerImage]="crud.renderedImage" [routerLink]="crud.path"></card-component>
+    </div>
+  </div>
+</div>
