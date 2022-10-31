@@ -105,6 +105,11 @@ export class CrudPageComponent implements OnInit {
   edit(value: any) {
     this.edittingValue = true;
     this.getFormInputs().then(() => {
+      this.formInputs.forEach((input) => {
+        if(this.isDate(value[input.name])) input.value = value[input.name];
+        if(typeof(value[input.name]) == 'object') input.selectedValue = value[input.name];
+        else input.value = value[input.name];
+      })
     }).finally(() => this.dialogService.openDialog())
   }
 
@@ -159,12 +164,23 @@ export class CrudPageComponent implements OnInit {
             inputForm.value = await this.professorService.getProfessores();
           if(inputForm.name == 'curso')
             inputForm.value = await this.cursoService.getCursos();
+          if(inputForm.name == 'aluno')
+            inputForm.value = await this.alunoService.getAlunos();
+          if(inputForm.name == 'disciplina')
+            inputForm.value = await this.disciplinaService.getDisciplinas();
         }
     })
   }
 
-  addTable(value: any) {
-    this.tableValues.push(value);
+  eventDialog(value: any) {
+    if(this.edittingValue) {
+      let foundIndex = this.tableValues.findIndex(V => V.id == value.id);
+      this.tableValues[foundIndex] = value;
+    } else {
+      this.tableValues.push(value);
+    }
+
+    this.dialogService.closeDialog();
   }
 
   remove(value: any) {

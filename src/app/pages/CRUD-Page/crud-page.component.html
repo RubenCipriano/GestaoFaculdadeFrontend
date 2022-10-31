@@ -30,7 +30,7 @@
             [method]="edittingValue ? 'PUT' : 'POST'"
             [formInputs]="formInputs"
             *ngIf="dialogService.showDialog"
-            (eventEmitter)="addTable($event)"></dialog-component>
+            (eventEmitter)="eventDialog($event)"></dialog-component>
         </td>
       </tr>
     </table>

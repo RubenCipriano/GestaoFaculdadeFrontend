@@ -1,13 +1,14 @@
 export interface InputForm {
   name: string,
   type: InputType,
-  value?: Array<any>
+  value?: any;
+  selectedValue?: any;
 }
 
 export enum InputType {
   string="text",
   password="password",
-  date="date",
+  date="datetime-local",
   number="number",
   dropdown="dropdown"
 }

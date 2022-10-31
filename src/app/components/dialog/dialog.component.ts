@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
+import { Professor } from "src/models/professor";
 import { DialogService } from "src/services/modal.service";
 import { InputForm, InputType } from "./input-form";
 
@@ -13,7 +14,7 @@ import { InputForm, InputType } from "./input-form";
 })
 
 export class DialogComponent implements OnInit {
-  @Input() formInputs?: InputForm[];
+  @Input() formInputs?: InputForm[] = [];
   @Input() method: string = "POST";
   @Input() editedObjectId?: number;
 
@@ -28,7 +29,7 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
     let tempObject: any = {};
     this.formInputs?.forEach((value) => {
-      tempObject[value.name] = value.value || []
+      tempObject[value.name] = value.value || ['']
     });
     this.formGroup = this.formBuilder.group(tempObject);
   }
@@ -41,10 +42,8 @@ export class DialogComponent implements OnInit {
           break;
         case "PUT":
           this.formInputs?.forEach((formInput) => {
-            if(formInput.type == InputType.dropdown) this.formGroup.value[formInput.name] = formInput.value?.find((value) => value.id == this.formGroup.value[formInput.name]);
+            if(formInput.type == InputType.dropdown) this.formGroup.value[formInput.name] = formInput.value?.find((value: any) => value.id == this.formGroup.value[formInput.name]);
           })
-
-          console.log(this.formGroup.value)
           this.http.put(`${environment.apiUrl}/${this.routerParams.url.substring(1)}/${this.editedObjectId}`, this.formGroup.value).subscribe((response) => this.eventEmitter.emit(response))
           break;
       }

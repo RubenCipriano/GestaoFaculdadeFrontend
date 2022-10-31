@@ -7,9 +7,9 @@
       <form [method]="method" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
         <div class="input-form" *ngFor="let input of formInputs">
           <label>{{ input.name }}</label>
-          <input *ngIf="input.type != 'dropdown'" class="input" [type]="input.type" [name]="input" [formControlName]="input.name" [value]="input?.value">
-          <select *ngIf="input?.type == 'dropdown'" [formControlName]="input.name">
-            <option *ngFor="let value of input?.value" [value]="value.id">{{ value?.nome }}</option>
+          <input *ngIf="input.type != 'dropdown'" class="input" [type]="input.type" [name]="input" [formControlName]="input.name" [(ngModel)]="input.value">
+          <select *ngIf="input?.type == 'dropdown'" [formControlName]="input.name" [(ngModel)]="input.selectedValue">
+            <option *ngFor="let value of input?.value" [ngValue]="value">{{ value?.nome }}</option>
           </select>
         </div>
 
