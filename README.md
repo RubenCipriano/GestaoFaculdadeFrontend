@@ -1,27 +1,56 @@
-# AngularApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
+# C# Backend Server
 
-## Development server
+Backend desenvolvido para o projeto de gestão de faculdades, 
+a parte de front-end está disponivel em 
+https://github.com/RubenCipriano/GestaoFaculdadeFrontend
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este projeto backend é um backend onde é possivel fazer calls à API, 
+não sendo necessário qualquer tipo de autenticação, os endpoints disponiveis na API são:
 
-## Code scaffolding
+- alunos
+- curso
+- disciplinas
+- notas
+- professor
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+sendo que todas estas possuem o mesmo tipo de comportamento
+## Instalação
 
-## Build
+Após configurar o servidor SQL nas configurações do `appsettings.json`.
+Instale e corra o backend utilizando os seguintes comandos:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+  dotnet env database update
+  dotnet run
+```
+    
+### Documentação da API
 
-## Running unit tests
+#### Retorna todos os alunos
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```http
+  GET /api/aluno
+```
 
-## Running end-to-end tests
+#### Apaga um aluno
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```http
+  DELETE /api/aluno/${id}
+```
 
-## Further help
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `int` | **Obrigatório**. O ID do item que você quer eliminar |
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+#### Edita um aluno
+
+```http
+  PUT /api/aluno/${id}
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `id`      | `int` | **Obrigatório**. O ID do item que você quer editar |
+| `body`      | `Aluno` | **Obrigatório**. Objeto do tipo **Aluno** |
