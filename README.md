@@ -1,56 +1,27 @@
+# AngularApp
 
-# C# Backend Server
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
 
-Backend desenvolvido para o projeto de gestão de faculdades, 
-a parte de front-end está disponivel em 
-https://github.com/RubenCipriano/GestaoFaculdadeFrontend
+## Development server
 
-Este projeto backend é um backend onde é possivel fazer calls à API, 
-não sendo necessário qualquer tipo de autenticação, os endpoints disponiveis na API são:
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-- alunos
-- curso
-- disciplinas
-- notas
-- professor
+## Code scaffolding
 
-sendo que todas estas possuem o mesmo tipo de comportamento
-## Instalação
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Após configurar o servidor SQL nas configurações do `appsettings.json`.
-Instale e corra o backend utilizando os seguintes comandos:
+## Build
 
-```bash
-  dotnet env database update
-  dotnet run
-```
-    
-### Documentação da API
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-#### Retorna todos os alunos
+## Running unit tests
 
-```http
-  GET /api/aluno
-```
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-#### Apaga um aluno
+## Running end-to-end tests
 
-```http
-  DELETE /api/aluno/${id}
-```
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `id`      | `int` | **Obrigatório**. O ID do item que você quer eliminar |
+## Further help
 
-
-#### Edita um aluno
-
-```http
-  PUT /api/aluno/${id}
-```
-
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `id`      | `int` | **Obrigatório**. O ID do item que você quer editar |
-| `body`      | `Aluno` | **Obrigatório**. Objeto do tipo **Aluno** |
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
